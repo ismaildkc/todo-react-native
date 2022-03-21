@@ -1,15 +1,18 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 
-function Box() {
+const Box = () => {
   return (
-    <Text style={styles.box}>Hello</Text>
+    <></>
   )
 }
 
 const styles = StyleSheet.create({
   box: {
     backgroundColor: 'red',
+    height: 50,
+    width: '100%',
+    flex: 1
   },
   container: {
     marginTop: 50,

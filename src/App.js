@@ -1,7 +1,11 @@
 import * as React from "react"
+import { SafeAreaView, View, StyleSheet } from "react-native"
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import TabBar from "./components/tab-bar";
+import Box from "./components/Box";
 
 import CalendarView from "./views/Calendar"
 import AddTaskView from "./views/AddTask"
@@ -11,7 +15,7 @@ import DetailView from "./views/Detail";
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 
-function ListStack(){
+function ListStack() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={ListView} />
@@ -22,13 +26,15 @@ function ListStack(){
 
 function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator initialRouteName="List">
-        <Tab.Screen name="Calendar" component={CalendarView} />
-        <Tab.Screen name="Add Task" component={AddTaskView} />
-        <Tab.Screen name="List" component={ListStack} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <SafeAreaView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Tab.Navigator tabBar={props => <TabBar {...props} />}>
+          <Tab.Screen name="Calendar" component={CalendarView} />
+          <Tab.Screen name="Add" component={AddTaskView} />
+          <Tab.Screen name="Tasks" component={ListStack} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   )
 }
 
