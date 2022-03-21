@@ -1,10 +1,15 @@
 import * as React from "react"
-import { View, Text } from "react-native"
+import { Button, View, Text } from "react-native"
 
-function ListView(){
+
+function ListView({navigation}){
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
+      <Text>Home</Text>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Detail')}
+      />
     </View>
   );
 }
