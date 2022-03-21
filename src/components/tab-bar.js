@@ -38,16 +38,25 @@ function TabBar({ state, descriptors, navigation }) {
           });
         };
 
-        return (
+        return label === 'Add' ? ( 
+          <View style={styles.addButtonContainer}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={onPress}
+              onLongPress={onLongPress}
+            >
+              <Plus stroke="white" />
+            </TouchableOpacity>
+          </View>
+        ) : (
           <TouchableOpacity
-            style={styles.button}
+            style={[ styles.button]}
             onPress={onPress}
             onLongPress={onLongPress}
           >
-            {label === 'Add' && <Plus />}
             {label === 'Calendar' && <Calendar />}
             {label === 'Tasks' && <List />}
-            <Box style={styles.box} />
+            <View style={[styles.dot, isFocused && styles.dotActive ]} />
           </TouchableOpacity>
         );
       })}
@@ -56,18 +65,35 @@ function TabBar({ state, descriptors, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  addButtonContainer: {
+    padding: 10,
+    borderRadius:99,
+    marginTop: -15,
+    backgroundColor: '#fff'
+  },
   button: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40
+    height: 40,
+    paddingTop: 6
   },
-  box: {
-    flex: 1,
-    color: 'red',
-    backgroundColor: 'red',
+  addButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 56,
+    height: 56,
+    backgroundColor: '#E11E3C',
+    borderRadius: 99
+  },
+  dot: {
+    backgroundColor: '#fff',
     width: 3,
-    height: 30,
+    height: 3,
+    marginTop: 8
+  },
+  dotActive: {
+    backgroundColor: '#E11E3C',
   }
 })
 
