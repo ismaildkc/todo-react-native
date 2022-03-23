@@ -19,9 +19,6 @@ function ListView({ navigation }) {
 
 
       <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
 
       <Button
         title="Go to Details"
