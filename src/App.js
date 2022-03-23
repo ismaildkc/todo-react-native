@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import TabBar from "./components/tab-bar";
-import Box from "./components/Box";
 
 import CalendarView from "./views/Calendar"
 import AddTaskView from "./views/AddTask"

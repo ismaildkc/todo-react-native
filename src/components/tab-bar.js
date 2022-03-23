@@ -4,6 +4,8 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Plus, Calendar, List } from "./icons"
 import Box from "./Box"
 
+import {COLORS} from '../constants'
+
 function TabBar({ state, descriptors, navigation }) {
   return (
     <View style={{ flexDirection: 'row' }}>
@@ -39,7 +41,7 @@ function TabBar({ state, descriptors, navigation }) {
         };
 
         return label === 'Add' ? ( 
-          <View style={styles.addButtonContainer}>
+          <View key={label} style={styles.addButtonContainer}>
             <TouchableOpacity
               style={styles.addButton}
               onPress={onPress}
@@ -49,13 +51,13 @@ function TabBar({ state, descriptors, navigation }) {
             </TouchableOpacity>
           </View>
         ) : (
-          <TouchableOpacity
+          <TouchableOpacity key={label}
             style={[ styles.button]}
             onPress={onPress}
             onLongPress={onLongPress}
           >
-            {label === 'Calendar' && <Calendar />}
-            {label === 'Tasks' && <List />}
+            {label === 'Calendar' && <Calendar stroke={COLORS.gray} />}
+            {label === 'Tasks' && <List stroke={COLORS.gray} />}
             <View style={[styles.dot, isFocused && styles.dotActive ]} />
           </TouchableOpacity>
         );
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
   addButtonContainer: {
     padding: 10,
     borderRadius:99,
-    marginTop: -15,
+    marginTop: -20,
     backgroundColor: '#fff'
   },
   button: {
@@ -76,14 +78,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    paddingTop: 6
+    paddingTop: 15
   },
   addButton: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 56,
     height: 56,
-    backgroundColor: '#E11E3C',
+    backgroundColor: COLORS.orange,
     borderRadius: 99
   },
   dot: {
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   dotActive: {
-    backgroundColor: '#E11E3C',
+    backgroundColor: COLORS.orange,
   }
 })
 
