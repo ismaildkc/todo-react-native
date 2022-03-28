@@ -12,7 +12,8 @@ export const COLORS = {
 }
 
 export const SIZE = {
-  borderRadius: 12
+  borderRadius: 12,
+  pagePadding: 15,
 }
 
 // Global CSS Classes
@@ -29,9 +30,15 @@ export const CLASSES = {
     minWidth: 300
   },
   layout: {
-    padding: 15,
+    padding: SIZE.pagePadding,
     backgroundColor: COLORS.bgColor,
     flex: 1
+  },
+  flatListlayout: {
+    marginLeft: -SIZE.pagePadding,
+    marginRight: -SIZE.pagePadding,
+    paddingLeft: SIZE.pagePadding,
+    paddingRight: SIZE.pagePadding,
   },
   textTitle: {
     fontSize: 22,

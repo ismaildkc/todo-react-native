@@ -1,14 +1,33 @@
 import React from 'react';
-import { View, StyleSheet, Button, TouchableOpacity, Keyboard  } from 'react-native'
+import { View, StyleSheet, Button, TouchableOpacity, Keyboard } from 'react-native'
 
 import Input from './input'
 import { Search, Cross } from './icons'
 
 import { COLORS, CLASSES } from '../constants'
 
-function SearchBox() {
+function SearchBox({ onChangeFocus }) {
   const [value, setValue] = React.useState('')
   const [isFocused, setFocus] = React.useState(false)
+
+  React.useEffect(() => {
+    Keyboard.addListener("keyboardDidShow", keyboardDidShow );
+    Keyboard.addListener("keyboardDidHide", keyboardDidHide );
+    
+    return function() {
+      Keyboard.removeAllListeners("keyboardDidShow", keyboardDidShow );
+      Keyboard.removeAllListeners("keyboardDidHide", keyboardDidHide );
+    }
+
+  }, [])
+
+  const keyboardDidShow = () => {
+    console.log("true");
+  }
+  
+  const keyboardDidHide = () => {
+    console.log("false");
+  }
 
   const onClose = (e) => {
     setFocus(false)
@@ -25,7 +44,7 @@ function SearchBox() {
         placeholderTextColor={COLORS.gray}
         value={value}
         onFocus={() => setFocus(true)}
-        onChangeText={value => {setValue(value)}}
+        onChangeText={value => { setValue(value) }}
       />
       {isFocused && (
         <Cross onPress={() => onClose()} style={[styles.icon, styles.cross]} fill={COLORS.red} zIndex={1} />

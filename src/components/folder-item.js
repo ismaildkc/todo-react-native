@@ -1,30 +1,35 @@
 import * as React from "react"
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native"
 
-import { Arrow, Folder, Cross } from "./icons"
+import { Arrow, Folder, Cross} from "./icons"
 
 import { COLORS, CLASSES, SIZE } from '../constants'
 
-function ListItem({ navigation, data }) {
+function FolderItem({ children, navigation }) {
   const isTask = false
 
   return (
-    <TouchableOpacity
-      style={[styles.container, data.isChecked && styles.checkedTask]}
+    <TouchableOpacity 
+      onPress={() => navigation.navigate('Detail')}
+      style={ [styles.container] }
     >
-      <View style={[styles.left]} >
-        { data.isChecked && <View style={[styles.dot]}></View> }
-        <Text>{data.title}</Text>
+      <View style={ [styles.left]} >
+        { isTask ?
+          <Cross marginRight={10} fill={COLORS.black} />
+          :
+          <Folder marginRight={10} fill={COLORS.black} />
+        }
+        <Text>Stay Alive!</Text>
       </View>
-      <View style={[styles.right]} >
-      { !data.isChecked && <Cross fill={COLORS.red} />}
+      <View style={ [styles.right]} >
+        <Arrow fill={COLORS.black} />
       </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: { 
     padding: 15,
     marginBottom: 10,
     flexDirection: 'row',
@@ -38,18 +43,7 @@ const styles = StyleSheet.create({
   left: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  dot: {
-    width: 25,
-    height: 25,
-    borderRadius: 100,
-    borderWidth: 2,
-    borderColor: COLORS.purple,
-    marginRight: 15
-  },
-  checkedTask:{
-
   }
 })
 
-export default ListItem
+export default FolderItem

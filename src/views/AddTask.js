@@ -1,12 +1,22 @@
 import * as React from "react"
-import { View, Text } from "react-native"
+import { StyleSheet, Text } from "react-native"
+import SafeAreaView from 'react-native-safe-area-view';
 
-function AddTaskView(){
+import { CLASSES, COLORS } from "../constants"
+
+function AddTaskView() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <SafeAreaView style={[CLASSES.layout, styles.layout]}>
       <Text>Add tasks!</Text>
-    </View>
+    </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  layout:{
+    backgroundColor: COLORS.purpleLight,
+  }
+})
+
 
 export default AddTaskView

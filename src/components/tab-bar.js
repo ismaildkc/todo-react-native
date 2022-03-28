@@ -8,7 +8,7 @@ import {COLORS} from '../constants'
 
 function TabBar({ state, descriptors, navigation }) {
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={styles.tabBar}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -56,8 +56,10 @@ function TabBar({ state, descriptors, navigation }) {
             onPress={onPress}
             onLongPress={onLongPress}
           >
-            {label === 'Calendar' && <Calendar stroke={COLORS.gray} />}
-            {label === 'Tasks' && <List stroke={COLORS.gray} />}
+            { label === 'Calendar' && <Calendar 
+            stroke={ isFocused ? COLORS.orange : COLORS.gray} />}
+            { label === 'Tasks' && <List 
+            stroke={ isFocused ? COLORS.orange : COLORS.gray} />}
             <View style={[styles.dot, isFocused && styles.dotActive ]} />
           </TouchableOpacity>
         );
@@ -67,6 +69,10 @@ function TabBar({ state, descriptors, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  tabBar: {
+    flexDirection: 'row',
+    paddingBottom: 25
+  },
   addButtonContainer: {
     padding: 10,
     borderRadius:99,
@@ -77,8 +83,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
-    paddingTop: 15
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   addButton: {
     alignItems: 'center',
@@ -90,9 +96,10 @@ const styles = StyleSheet.create({
   },
   dot: {
     backgroundColor: '#fff',
-    width: 3,
-    height: 3,
-    marginTop: 8
+    width: 4,
+    height: 4,
+    marginTop: 5,
+    borderRadius: 99
   },
   dotActive: {
     backgroundColor: COLORS.orange,
